@@ -2,25 +2,8 @@
 
 /* 
 	New User Fields Class
+	Version: 0.2
 */
-
-$fields = array( 
-	'staff' => array( 
-							'label' 	=> 'Staff?', 
-							'type' 		=> 'checkbox', 
-							'options' 	=> array( 1 => 'Yes' ),
-							'single' 	=> true 
-						),
-	'club_member' => array( 
-							'label' 	=> 'Member of a club?', 
-							'type' 		=> 'select', 
-							'options' 	=> $option_array,
-							'single'	=> true
-						),
-			);
-
-$bjm_user_fields = new Bjm_user_fields( $fields );
-
 
 class Bjm_user_fields
 {
@@ -75,6 +58,23 @@ class Bjm_user_fields
 		}		
 	}
 	
+	function display_textbox( $arg_array )
+	{
+		extract( $arg_array );
+	?>
+		<p id="field-<?php echo $name;?>">
+		
+			<label for="<?php echo $name;?>"> <?php echo $args['label'];?> </label>
+				<input 
+						type="text" 
+						name="<?php echo $name;?>" 
+						id="<?php echo $name;?>" 
+						value="<?php echo isset( $val ) ? $val : '' ; ?>"  
+				/> 	
+		</p> 
+	<?php		
+	}
+
 	function display_checkbox( $arg_array )
 	{
 		extract( $arg_array );
@@ -129,5 +129,4 @@ class Bjm_user_fields
 		</p> 
 	<?php	
 	}
-
 }
